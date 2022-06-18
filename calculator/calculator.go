@@ -22,9 +22,9 @@ func Multiply(a, b float64) float64 {
 	return a * b
 }
 
-// Devide takes two numbers a and b, and
-// returns the result of deviding a by b.
-func Devide(a, b float64) (float64, error) {
+// Divide takes two numbers a and b, and
+// returns the result of dividing a by b.
+func Divide(a, b float64) (float64, error) {
 	if b == 0 {
 		return 0, errors.New("division by zero not allowed")
 	}

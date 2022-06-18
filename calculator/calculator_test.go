@@ -65,7 +65,7 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
-func TestDevide(t *testing.T) {
+func TestDivide(t *testing.T) {
 	t.Parallel()
 	type testCase struct {
 		a, b float64
@@ -77,22 +77,22 @@ func TestDevide(t *testing.T) {
 		{a: 10, b: 2, want: 5},
 	}
 	for _, tc := range testCases {
-		got, err := calculator.Devide(tc.a, tc.b)
+		got, err := calculator.Divide(tc.a, tc.b)
 		if err != nil {
-			t.Fatalf("Devide(%f, %f): want no error for valied input, got %v", tc.a, tc.b, err)
+			t.Fatalf("Divide(%f, %f): want no error for valied input, got %v", tc.a, tc.b, err)
 		}
 		if tc.want != got {
-			t.Errorf("Devide(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+			t.Errorf("Divide(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
 }
 
-func TestDevideInvalid(t *testing.T) {
+func TestDivideInvalid(t *testing.T) {
 	t.Parallel()
 
 	var a, b float64 = 1, 0
-	_, err := calculator.Devide(a, b)
+	_, err := calculator.Divide(a, b)
 	if err == nil {
-		t.Errorf("Devide(%f, %f): want error for invalid input, got: %v", a, b, err)
+		t.Errorf("Divide(%f, %f): want error for invalid input, got: %v", a, b, err)
 	}
 }
