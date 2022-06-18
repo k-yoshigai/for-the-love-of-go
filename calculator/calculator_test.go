@@ -86,3 +86,13 @@ func TestDevide(t *testing.T) {
 		}
 	}
 }
+
+func TestDevideInvalid(t *testing.T) {
+	t.Parallel()
+
+	var a, b float64 = 1, 0
+	_, err := calculator.Devide(a, b)
+	if err == nil {
+		t.Errorf("Devide(%f, %f): want error for invalid input, got: %v", a, b, err)
+	}
+}
