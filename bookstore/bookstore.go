@@ -26,6 +26,14 @@ func Buy(b Book) (Book, error) {
 	return b, nil
 }
 
+func (b *Book) SetPriceCents(price int) error {
+	if price < 0 {
+		return fmt.Errorf("bad price %d (must not bee negative)", price)
+	}
+	b.PriceCents = price
+	return nil
+}
+
 func (c Catalog) GetBook(id int) (Book, error) {
 	if book, ok := c[id]; !ok {
 		return Book{}, fmt.Errorf("ID %d doesn't exist", id)
