@@ -16,6 +16,7 @@ type Book struct {
 	Copies          int
 	PriceCents      int
 	DiscountPercent int
+	category        string
 }
 
 func Buy(b Book) (Book, error) {
@@ -32,6 +33,18 @@ func (b *Book) SetPriceCents(price int) error {
 	}
 	b.PriceCents = price
 	return nil
+}
+
+func (b *Book) SetCategory(category string) error {
+	if category != "Autobiography" {
+		return fmt.Errorf("cannot set %s to the category", category)
+	}
+	b.category = category
+	return nil
+}
+
+func (b Book) Category() string {
+	return b.category
 }
 
 func (c Catalog) GetBook(id int) (Book, error) {
