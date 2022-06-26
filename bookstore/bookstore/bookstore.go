@@ -8,6 +8,20 @@ import (
 // Catalog represents information about a catalog.
 type Catalog map[int]Book
 
+type Category int
+
+const (
+	CategoryAutobiography Category = iota
+	CategoryLargePrintRomance
+	CategoryParticlePhysics
+)
+
+var validCategory = map[Category]bool{
+	CategoryAutobiography:     true,
+	CategoryLargePrintRomance: true,
+	CategoryParticlePhysics:   true,
+}
+
 // Book represents information about a book.
 type Book struct {
 	ID              int
@@ -16,7 +30,7 @@ type Book struct {
 	Copies          int
 	PriceCents      int
 	DiscountPercent int
-	category        string
+	category        Category
 }
 
 func Buy(b Book) (Book, error) {
@@ -35,15 +49,15 @@ func (b *Book) SetPriceCents(price int) error {
 	return nil
 }
 
-func (b *Book) SetCategory(category string) error {
-	if category != "Autobiography" {
-		return fmt.Errorf("cannot set %s to the category", category)
+func (b *Book) SetCategory(category Category) error {
+	if !validCategory[category] {
+		return fmt.Errorf("cannot set %v to the category", category)
 	}
 	b.category = category
 	return nil
 }
 
-func (b Book) Category() string {
+func (b Book) Category() Category {
 	return b.category
 }
 
